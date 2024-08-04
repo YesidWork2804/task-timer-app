@@ -3,6 +3,7 @@
     "name": "task-timer-app",
     "slug": "task-timer-app",
     "version": "1.0.0",
+    "platforms": ["ios", "android"],
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
