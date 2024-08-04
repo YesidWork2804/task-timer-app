@@ -24,7 +24,6 @@ import {
 import { Colors } from "@/constants/Colors";
 import { useFocusEffect, useRouter } from "expo-router";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Button } from "react-native-paper";
 
 export default function HomePage() {
   const navigation = useNavigation();
@@ -242,20 +241,26 @@ export default function HomePage() {
             style={[styles.buttonDelete]}
           >
             <Text style={[styles.buttonText, styles.deleteButtonText]}>
-              Eliminar
+              Archivar
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity onPress={handleEditTask} style={styles.button}>
-            <Text style={styles.buttonText}>Editar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={handleCompleteTask}
-            style={[styles.buttonComplete]}
-          >
-            <Text style={[styles.buttonText, styles.completeButtonText]}>
-              Completar
-            </Text>
-          </TouchableOpacity>
+          {selectedTask.completed ? (
+            <Text></Text>
+          ) : (
+            <>
+              <TouchableOpacity onPress={handleEditTask} style={styles.button}>
+                <Text style={styles.buttonText}>Editar</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleCompleteTask}
+                style={[styles.buttonComplete]}
+              >
+                <Text style={[styles.buttonText, styles.completeButtonText]}>
+                  Completada
+                </Text>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       </View>
     );
@@ -345,6 +350,7 @@ export default function HomePage() {
   );
 }
 
+//Style HomePage
 const styles = StyleSheet.create({
   container: {
     flex: 1,

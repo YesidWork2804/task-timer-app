@@ -20,10 +20,17 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { Colors } from "@/constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
+import { useTaskNotifications } from "../../hooks/UseTaskNotifications";
+
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("El título es requerido"),
   description: Yup.string().required("La descripción es requerida"),
-  dateTime: Yup.date().required("La fecha y hora son requeridas"),
+  dateTime: Yup.date()
+    .required("La fecha y hora son requeridas")
+    .min(
+      new Date(Date.now() + 6 * 60 * 1000),
+      "La fecha debe ser al menos 5 minutos después de la hora actual"
+    ),
 });
 
 export default function AddTaskScreen() {
@@ -64,6 +71,8 @@ export default function AddTaskScreen() {
     }
   };
 
+  const { scheduleNotification } = useTaskNotifications();
+
   const handleSubmit = async (values: {
     title: string;
     description: string;
@@ -74,14 +83,15 @@ export default function AddTaskScreen() {
       const tasksJson = await AsyncStorage.getItem("tasks");
       let tasks: Task[] = tasksJson ? JSON.parse(tasksJson) : [];
 
+      let newTask: Task;
+
       if (taskId) {
-        // Editar tarea existente
         tasks = tasks.map((task) =>
           task.id === taskId ? { ...task, ...values } : task
         );
+        newTask = { ...tasks.find((task) => task.id === taskId)!, ...values };
       } else {
-        // Agregar nueva tarea
-        const newTask: Task = {
+        newTask = {
           id: Date.now().toString(),
           ...values,
         };
@@ -89,12 +99,15 @@ export default function AddTaskScreen() {
       }
 
       await AsyncStorage.setItem("tasks", JSON.stringify(tasks));
-      // console.log(taskId ? "Tarea editada:" : "Tarea agregada:", values);
+
+      await scheduleNotification(newTask);
+
       router.push("/");
     } catch (error) {
       console.error("Error al guardar la tarea:", error);
     }
   };
+
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -147,7 +160,6 @@ export default function AddTaskScreen() {
                 value={values.title}
                 error={!!(touched.title && errors.title)}
               />
-
               {touched.title && errors.title && (
                 <Text style={styles.errorText}>{errors.title}</Text>
               )}
@@ -168,6 +180,16 @@ export default function AddTaskScreen() {
               {touched.description && errors.description && (
                 <Text style={styles.errorText}>{errors.description}</Text>
               )}
+              <Text
+                style={{
+                  color: Colors.colorTextSecondary,
+                  fontWeight: "800",
+                  marginTop: 16,
+                  fontSize: 18,
+                }}
+              >
+                Escoja la fecha de vencimiento.
+              </Text>
 
               <TouchableOpacity
                 onPress={() =>
@@ -226,7 +248,6 @@ export default function AddTaskScreen() {
                   {errors.dateTime as string}
                 </Text>
               )}
-
               <View
                 style={{
                   justifyContent: "center",

@@ -1,50 +1,67 @@
-# Welcome to your Expo app 👋
+# Task Manager App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## 📱 Descripción
 
-## Get started
+Task Manager App es una aplicación móvil desarrollada con React Native y Expo que permite a los usuarios gestionar sus tareas diarias de manera eficiente. Los usuarios pueden crear, editar, eliminar y marcar tareas como completadas, así como recibir notificaciones antes de que las tareas expiren.
 
-1. Install dependencies
+## 🚀 Características
 
-   ```bash
-   npm install
-   ```
+- Crear nuevas tareas con título, descripción y fecha/hora de vencimiento
+- Editar tareas existentes
+- Eliminar tareas
+- Marcar tareas como completadas
+- Recibir notificaciones 5 minutos antes de que una tarea expire
+- Interfaz de usuario intuitiva y fácil de usar
 
-2. Start the app
+## 🛠 Tecnologías Utilizadas
 
-   ```bash
-    npx expo start
-   ```
+- [React Native](https://reactnative.dev/) ![React Native](https://img.shields.io/badge/-React%20Native-61DAFB?style=flat-square&logo=react&logoColor=black)
+- [Expo](https://expo.dev/) ![Expo](https://img.shields.io/badge/-Expo-000020?style=flat-square&logo=expo&logoColor=white)
+- [TypeScript](https://www.typescriptlang.org/) ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+- [Formik](https://formik.org/) para manejo de formularios
+- [Yup](https://github.com/jquense/yup) para validación de esquemas
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) para almacenamiento local
+- [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/) para notificaciones push
 
-In the output, you'll find options to open the app in a
+## 📥 Instalación
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+1. Clona el repositorio:
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
 
-When you're ready, run:
+## 🖥 Uso
 
-```bash
-npm run reset-project
-```
+1. Abre la aplicación en tu dispositivo o emulador.
+2. En la pantalla principal, verás la lista de tareas existentes (si las hay).
+3. Para agregar una nueva tarea, toca el botón flotante "+".
+4. Para editar o eliminar una tarea, selecciónala de la lista y usa los botones correspondientes.
+5. Marca las tareas como completadas cuando las hayas terminado.
+6. Recibirás notificaciones 5 minutos antes de que una tarea expire.
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## 🧩 Estructura del Proyecto
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+task-manager-app/
+├── src/
+│   ├── domain/
+        ├── task/ 
+            ├──Gateway/
+            ├── Models/
+            ├── useCases/
+│   ├── infrastructure/
+      ├── task/
+            ├──interfaces/
+            ├── mappers/
+            ├── service/
+│   ├── presentation/
+│   ├── services/
+│   ├── ui/
+        ├── components/
+        ├── screens/
+        ├── hooks/
+│   ├── utils/
+│   ├── index.ts
+│   ├── App.tsx
+│   ├── App.test.tsx
+│   ├── App.tsx
+│   ├── App.test.tsx
+└── package.json
