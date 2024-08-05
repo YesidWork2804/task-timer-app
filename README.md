@@ -6,12 +6,12 @@ Task Manager App es una aplicación móvil desarrollada con React Native y Expo 
 
 ## 🚀 Características
 
-- Crear nuevas tareas con título, descripción y fecha/hora de vencimiento
-- Editar tareas existentes
-- Eliminar tareas
-- Marcar tareas como completadas
-- Recibir notificaciones 5 minutos antes de que una tarea expire
-- Interfaz de usuario intuitiva y fácil de usar
+- ✅ Crea nuevas tareas con título, descripción y fecha/hora de vencimiento
+- 🖊️ Edita tus tareas existentes en cualquier momento
+- 🗑️ Elimina tareas que ya no necesites
+- ✔️ Marca tus tareas como completadas
+- 🔔 Recibe notificaciones 5 minutos antes de que una tarea expire
+- 📊 Visualiza todas tus tareas de un vistazo
 
 ## 🛠 Tecnologías Utilizadas
 
@@ -23,45 +23,85 @@ Task Manager App es una aplicación móvil desarrollada con React Native y Expo 
 - [AsyncStorage](https://react-native-async-storage.github.io/async-storage/) para almacenamiento local
 - [Expo Notifications](https://docs.expo.dev/versions/latest/sdk/notifications/) para notificaciones push
 
-## 📥 Instalación
-
-1. Clona el repositorio:
 
 
+## 🖥 Cómo Usar la Aplicación
 
-## 🖥 Uso
+1. **Inicio**: Al abrir la aplicación, verás tu lista de tareas actual.
 
-1. Abre la aplicación en tu dispositivo o emulador.
-2. En la pantalla principal, verás la lista de tareas existentes (si las hay).
-3. Para agregar una nueva tarea, toca el botón flotante "+".
-4. Para editar o eliminar una tarea, selecciónala de la lista y usa los botones correspondientes.
-5. Marca las tareas como completadas cuando las hayas terminado.
+2. **Crear una Nueva Tarea**:
+   - Toca el botón "+" en la pantalla principal.
+   - Completa el título, descripción y fecha/hora de la tarea.
+   - Presiona "Guardar" para añadir la tarea a tu lista.
+
+3. **Ver Detalles de una Tarea**:
+   - Toca cualquier tarea en la lista para ver sus detalles.
+
+4. **Editar una Tarea**:
+   - En la vista de detalles, presiona "Editar".
+   - Modifica los campos que necesites.
+   - Guarda los cambios.
+
+5. **Completar una Tarea**:
+   - En la vista de detalles, presiona "Completar" cuando hayas terminado la tarea.
+
+6. **Eliminar una Tarea**:
+   - En la vista de detalles, presiona "Eliminar" para quitar la tarea de tu lista.
+
+7. **Notificaciones**:
+   - Recibirás una alerta 5 minutos antes de que una tarea expire.
+   - Asegúrate de tener las notificaciones activadas en tu dispositivo.
 6. Recibirás notificaciones 5 minutos antes de que una tarea expire.
 
-## 🧩 Estructura del Proyecto
+## 💡 Consejos de Uso
 
-task-manager-app/
-├── src/
-│   ├── domain/
-        ├── task/ 
-            ├──Gateway/
-            ├── Models/
-            ├── useCases/
-│   ├── infrastructure/
-      ├── task/
-            ├──interfaces/
-            ├── mappers/
-            ├── service/
-│   ├── presentation/
-│   ├── services/
-│   ├── ui/
-        ├── components/
-        ├── screens/
-        ├── hooks/
-│   ├── utils/
-│   ├── index.ts
-│   ├── App.tsx
-│   ├── App.test.tsx
-│   ├── App.tsx
-│   ├── App.test.tsx
-└── package.json
+- Crea tareas con títulos claros y concisos para una fácil identificación.
+- Utiliza la descripción para agregar detalles importantes o pasos a seguir.
+- Establece fechas y horas realistas para tus tareas.
+- Revisa tu lista de tareas regularmente y actualízala según sea necesario.
+- Marca las tareas como completadas para mantener tu lista organizada.
+
+
+Entendido. Modificaré la sección de Instalación y Generación del APK para que sea más apropiada para incluirla directamente en el README. Aquí tienes la versión actualizada de esa sección:
+
+## 📲 Instalación y Generación del APK
+
+Para instalar y generar el APK de Task Manager App en tu dispositivo, sigue estos pasos:
+
+1. Descarga la última versión del APK desde nuestra página de releases:
+   [\[Link a la página de releases del proyecto\]](https://expo.dev/artifacts/eas/rGPvFunkkmpVsnqNw1XUrL.apk)
+
+2. En tu dispositivo Android, ve a Configuración > Seguridad.
+
+3. Activa la opción "Orígenes desconocidos" para permitir la instalación de aplicaciones fuera de la Play Store.
+
+4. Abre el archivo APK descargado en tu dispositivo.
+
+5. Sigue las instrucciones en pantalla para completar la instalación.
+
+Alternativamente, si prefieres instalar la app a través de Expo Go:
+
+1. Descarga Expo Go desde la Play Store.
+
+2. Abre Expo Go y escanea el siguiente código QR:
+
+   [Espacio reservado para el código QR]
+
+3. La aplicación se cargará y podrás comenzar a usarla inmediatamente.
+
+Nota: Para generar tu propio APK desde el código fuente, necesitarás tener instalado Node.js, Expo CLI, y seguir la documentación oficial de Expo para el proceso de construcción.
+
+
+
+## 🚀 Posibles Mejoras de la App
+
+1. Implementar sincronización en la nube para respaldar y compartir tareas entre dispositivos.
+2. Añadir categorías o etiquetas para organizar mejor las tareas.
+3. Incorporar un sistema de prioridades para las tareas (alta, media, baja).
+4. Desarrollar una vista de calendario para visualizar las tareas programadas.
+5. Implementar recordatorios recurrentes para tareas periódicas.
+6. Añadir la opción de adjuntar archivos o imágenes a las tareas.
+7. Integrar un modo oscuro para mejorar la experiencia de uso nocturna.
+8. Añadir estadísticas y gráficos para seguimiento de productividad.
+
+
