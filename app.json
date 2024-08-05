@@ -3,7 +3,6 @@
     "name": "task-timer-app",
     "slug": "task-timer-app",
     "version": "1.0.0",
-    "platforms": ["ios", "android"],
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -17,10 +16,11 @@
       "supportsTablet": true
     },
     "android": {
+      "permissions": ["NOTIFICATIONS"],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.yesid2804.tasktimerapp"
     },
     "web": {
       "bundler": "metro",
@@ -32,14 +32,20 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/path/to/your-app-icon.png",
-          "color": "#ffffff",
-          "sounds": ["./local/path/to/your-sound.wav"]
+          "color": "#ffffff"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7b5bdebd-3c9c-409a-a11e-8d5a0bbee694"
+      }
     }
   }
 }

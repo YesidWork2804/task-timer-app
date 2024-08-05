@@ -28,7 +28,7 @@ const validationSchema = Yup.object().shape({
   dateTime: Yup.date()
     .required("La fecha y hora son requeridas")
     .min(
-      new Date(Date.now() + 6 * 60 * 1000),
+      new Date(Date.now() + 5 * 60 * 1000),
       "La fecha debe ser al menos 5 minutos después de la hora actual"
     ),
 });
