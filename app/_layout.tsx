@@ -31,8 +31,6 @@ export default function RootLayout() {
         finalStatus = status;
       }
 
-      console.log("Estado de los permisos:", finalStatus); // Log añadido aquí
-
       if (finalStatus !== "granted") {
         Alert.alert(
           "Permiso requerido",
@@ -40,21 +38,6 @@ export default function RootLayout() {
           [{ text: "OK" }]
         );
         return;
-      }
-
-      // Prueba de notificación con logs adicionales
-      console.log("Intentando programar notificación de prueba..."); // Log añadido aquí
-      try {
-        await Notifications.scheduleNotificationAsync({
-          content: {
-            title: "Prueba de notificación",
-            body: "Si ves esto, las notificaciones están funcionando correctamente.",
-          },
-          trigger: null,
-        });
-        console.log("Notificación de prueba programada con éxito"); // Log añadido aquí
-      } catch (error) {
-        console.error("Error al programar notificación de prueba:", error); // Log añadido aquí
       }
     })();
   }, []);

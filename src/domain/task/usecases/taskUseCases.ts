@@ -1,15 +1,23 @@
-import { taskRepository } from "@/src/infrastructure/task/service/task.service";
-import { useState, useCallback } from "react";
+import {
+  loadTasks,
+  saveTasks,
+} from "@/src/infrastructure/task/service/task.service";
+import { Task } from "../models/task";
 
-export function useTasks() {
-  const [tasks, setTasks] = useState<Task[]>([]);
+export const getTasks = loadTasks;
 
-  const addTask = useCallback((newTask: Task) => {
-    setTasks((prevTasks) => [...prevTasks, newTask]);
-    taskRepository.saveTask(newTask);
-  }, []);
+export const completeTask = async (taskId: string): Promise<Task[]> => {
+  const tasks = await loadTasks();
+  const updatedTasks = tasks.map((task) =>
+    task.id === taskId ? { ...task, completed: true } : task
+  );
+  await saveTasks(updatedTasks);
+  return updatedTasks;
+};
 
-  // Aquí puedes agregar más funciones como deleteTask, updateTask, etc.
-
-  return { tasks, addTask };
-}
+export const deleteTask = async (taskId: string): Promise<Task[]> => {
+  const tasks = await loadTasks();
+  const updatedTasks = tasks.filter((task) => task.id !== taskId);
+  await saveTasks(updatedTasks);
+  return updatedTasks;
+};

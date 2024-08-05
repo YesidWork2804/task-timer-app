@@ -1,11 +1,19 @@
-class TaskRepository {
-  async saveTask(task: Task): Promise<void> {
-    // Aquí implementarías la lógica para guardar la tarea
-    // Por ejemplo, usando AsyncStorage o una API
-    console.log("Guardando tarea:", task);
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+export const loadTasks = async (): Promise<Task[]> => {
+  try {
+    const tasksJson = await AsyncStorage.getItem("tasks");
+    return tasksJson ? JSON.parse(tasksJson) : [];
+  } catch (error) {
+    console.error("Error al cargar las tareas:", error);
+    return [];
   }
+};
 
-  // Implementa más métodos según sea necesario
-}
-
-export const taskRepository = new TaskRepository();
+export const saveTasks = async (tasks: Task[]): Promise<void> => {
+  try {
+    await AsyncStorage.setItem("tasks", JSON.stringify(tasks));
+  } catch (error) {
+    console.error("Error al guardar las tareas:", error);
+  }
+};

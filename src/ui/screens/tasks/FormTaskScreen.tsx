@@ -1,11 +1,5 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import {
-  SafeAreaView,
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from "react-native";
+import { SafeAreaView, View, TouchableOpacity, Platform } from "react-native";
 import {
   TextInput,
   Text,
@@ -21,15 +15,24 @@ import { Colors } from "@/constants/Colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { useTaskNotifications } from "../../hooks/UseTaskNotifications";
+import { stylesFormTask } from "../../styles/formTaskStyles";
+import { Task } from "@/src/domain/task/models/task";
 
 const validationSchema = Yup.object().shape({
   title: Yup.string().required("El título es requerido"),
   description: Yup.string().required("La descripción es requerida"),
   dateTime: Yup.date()
     .required("La fecha y hora son requeridas")
-    .min(
-      new Date(Date.now() + 5 * 60 * 1000),
-      "La fecha debe ser al menos 5 minutos después de la hora actual"
+    .test(
+      "is-future",
+      "La fecha y hora deben ser al menos 5 minutos después de la hora actual",
+      function (value) {
+        const currentDate = new Date();
+        const fiveMinutesFromNow = new Date(
+          currentDate.getTime() + 5 * 60 * 1000
+        );
+        return value && value >= fiveMinutesFromNow;
+      }
     ),
 });
 
@@ -118,9 +121,9 @@ export default function AddTaskScreen() {
 
   return (
     <PaperProvider>
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={stylesFormTask.container}>
         <TouchableOpacity
-          style={styles.backButton}
+          style={stylesFormTask.backButton}
           onPress={() => router.back()}
         >
           <MaterialIcons
@@ -129,7 +132,7 @@ export default function AddTaskScreen() {
             color={Colors.primary}
           />
         </TouchableOpacity>
-        <Text style={styles.title}>
+        <Text style={stylesFormTask.title}>
           {taskId ? "Editar tarea" : "Agregar nueva tarea"}
         </Text>
         <Formik
@@ -147,11 +150,11 @@ export default function AddTaskScreen() {
             touched,
             setFieldValue,
           }) => (
-            <View style={styles.form}>
+            <View style={stylesFormTask.form}>
               <TextInput
                 label="Título"
                 mode="outlined"
-                style={styles.input}
+                style={stylesFormTask.input}
                 textColor={Colors.colorTextSecondary}
                 outlineColor={Colors.primary}
                 activeOutlineColor={Colors.primary}
@@ -161,13 +164,13 @@ export default function AddTaskScreen() {
                 error={!!(touched.title && errors.title)}
               />
               {touched.title && errors.title && (
-                <Text style={styles.errorText}>{errors.title}</Text>
+                <Text style={stylesFormTask.errorText}>{errors.title}</Text>
               )}
 
               <TextInput
                 label="Descripción"
                 mode="outlined"
-                style={[styles.input, styles.textArea]}
+                style={[stylesFormTask.input, stylesFormTask.textArea]}
                 textColor={Colors.colorTextSecondary}
                 activeOutlineColor={Colors.primary}
                 onChangeText={handleChange("description")}
@@ -178,7 +181,9 @@ export default function AddTaskScreen() {
                 error={!!(touched.description && errors.description)}
               />
               {touched.description && errors.description && (
-                <Text style={styles.errorText}>{errors.description}</Text>
+                <Text style={stylesFormTask.errorText}>
+                  {errors.description}
+                </Text>
               )}
               <Text
                 style={{
@@ -197,7 +202,7 @@ export default function AddTaskScreen() {
                     ? setShowDatePicker(true)
                     : setShowDatePicker((prev) => !prev)
                 }
-                style={styles.dateButton}
+                style={stylesFormTask.dateButton}
               >
                 <Text
                   style={{
@@ -235,16 +240,26 @@ export default function AddTaskScreen() {
                   onChange={(event, selectedTime) => {
                     setShowTimePicker(false);
                     if (event.type === "set" && selectedTime) {
+                      const currentDate = new Date();
                       const newDateTime = new Date(values.dateTime);
                       newDateTime.setHours(selectedTime.getHours());
                       newDateTime.setMinutes(selectedTime.getMinutes());
-                      setFieldValue("dateTime", newDateTime);
+
+                      const fiveMinutesFromNow = new Date(
+                        currentDate.getTime() + 5 * 60 * 1000
+                      );
+
+                      if (
+                        newDateTime.getTime() >= fiveMinutesFromNow.getTime()
+                      ) {
+                        setFieldValue("dateTime", newDateTime);
+                      }
                     }
                   }}
                 />
               )}
               {touched.dateTime && errors.dateTime && (
-                <Text style={styles.errorText}>
+                <Text style={stylesFormTask.errorText}>
                   {errors.dateTime as string}
                 </Text>
               )}
@@ -256,11 +271,11 @@ export default function AddTaskScreen() {
                 }}
               >
                 <Button
-                  style={styles.addButton}
+                  style={stylesFormTask.addButton}
                   mode="contained"
                   onPress={() => handleSubmit()}
                 >
-                  <Text style={styles.buttonText}>
+                  <Text style={stylesFormTask.buttonText}>
                     {taskId ? "Guardar " : "Registrar"}
                   </Text>
                 </Button>
@@ -272,68 +287,3 @@ export default function AddTaskScreen() {
     </PaperProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 25,
-    backgroundColor: Colors.backgroundWhite,
-  },
-  addButton: {
-    backgroundColor: Colors.primary,
-    marginTop: 240,
-    fontSize: 16,
-    width: 200,
-    height: 50,
-    justifyContent: "center",
-  },
-  backButton: {
-    position: "absolute",
-    top: 40,
-    left: 16,
-    zIndex: 1,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginTop: 50,
-    marginBottom: 20,
-    textAlign: "center",
-    color: Colors.primary,
-  },
-  form: {
-    flex: 1,
-    color: "#000000",
-  },
-  input: {
-    marginBottom: 16,
-    backgroundColor: Colors.backgroundWhite,
-    color: Colors.primary,
-  },
-  textArea: {
-    height: 120,
-  },
-  dateButton: {
-    marginTop: 16,
-    marginBottom: 16,
-    borderColor: Colors.primary,
-    alignItems: "center",
-    justifyContent: "center",
-
-    marginHorizontal: 4,
-    borderRadius: 5,
-    borderWidth: 1,
-    height: 40,
-  },
-  errorText: {
-    color: Colors.error,
-    fontSize: 12,
-    marginTop: -12,
-    marginBottom: 8,
-  },
-  buttonText: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: Colors.backgroundWhite,
-  },
-});
