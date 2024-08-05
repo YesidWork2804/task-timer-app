@@ -33,6 +33,8 @@ export default function HomePage() {
   const [selectedTask, setSelectedTask] = useState<Task | null>(null);
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
 
+  const [tasksCompleted, setTasksCompleted] = useState<Task[]>([]);
+
   const [countdown, setCountdown] = useState<string | null>(null);
 
   useEffect(() => {
@@ -70,7 +72,7 @@ export default function HomePage() {
     return () => {
       if (intervalId) clearInterval(intervalId);
     };
-  }, [selectedTask]);
+  }, [selectedTask, tasksCompleted, countdown]);
 
   const loadTasks = async () => {
     try {
@@ -78,6 +80,9 @@ export default function HomePage() {
       if (tasksJson) {
         const loadedTasks: Task[] = JSON.parse(tasksJson);
         setTasks(loadedTasks);
+
+        const completedTasks = tasks.filter((task) => task.completed);
+        setTasksCompleted(completedTasks);
       }
     } catch (error) {
       console.error("Error al cargar las tareas:", error);
@@ -241,7 +246,7 @@ export default function HomePage() {
             style={[styles.buttonDelete]}
           >
             <Text style={[styles.buttonText, styles.deleteButtonText]}>
-              Archivar
+              Eliminar
             </Text>
           </TouchableOpacity>
           {selectedTask.completed ? (
@@ -287,12 +292,19 @@ export default function HomePage() {
             </TouchableOpacity>
           )}
           {isListExpanded && !selectedTask && (
-            <FlatList
-              data={tasks}
-              renderItem={renderTask}
-              keyExtractor={(task) => task.id}
-              style={styles.taskList}
-            />
+            <>
+              <Text style={styles.detailsCompleted}>
+                {tasks.length} Tareas Creadas{"                               "}
+                {tasksCompleted.length} Tareas Completadas
+              </Text>
+
+              <FlatList
+                data={tasks}
+                renderItem={renderTask}
+                keyExtractor={(task) => task.id}
+                style={styles.taskList}
+              />
+            </>
           )}
           {selectedTask && renderTaskDetails()}
         </>
@@ -522,6 +534,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
   },
+
+  modalNotification: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+
   modalView: {
     margin: 20,
     backgroundColor: "white",
@@ -586,5 +605,14 @@ const styles = StyleSheet.create({
   },
   completeButtonText: {
     color: Colors.primary,
+  },
+
+  detailsCompleted: {
+    fontSize: 14,
+    fontWeight: "600",
+    color: Colors.colorTextSecondary,
+    marginLeft: 14,
+    marginTop: 8,
+    marginBottom: 8,
   },
 });

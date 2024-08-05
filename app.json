@@ -2,7 +2,7 @@
   "expo": {
     "name": "task-timer-app",
     "slug": "task-timer-app",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
@@ -16,10 +16,12 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions": ["NOTIFICATIONS"],
+ 
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
+      "useNextNotificationsApi": true,
+      "permissions": ["NOTIFICATIONS"],
       "package": "com.yesid2804.tasktimerapp"
     },
     "web": {

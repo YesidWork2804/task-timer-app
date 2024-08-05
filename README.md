@@ -62,4 +62,46 @@ Task Manager App es una aplicación móvil desarrollada con React Native y Expo 
 - Marca las tareas como completadas para mantener tu lista organizada.
 
 
+Entendido. Modificaré la sección de Instalación y Generación del APK para que sea más apropiada para incluirla directamente en el README. Aquí tienes la versión actualizada de esa sección:
+
+## 📲 Instalación y Generación del APK
+
+Para instalar y generar el APK de Task Manager App en tu dispositivo, sigue estos pasos:
+
+1. Descarga la última versión del APK desde nuestra página de releases:
+   [\[Link a la página de releases del proyecto\]](https://expo.dev/artifacts/eas/rGPvFunkkmpVsnqNw1XUrL.apk)
+
+2. En tu dispositivo Android, ve a Configuración > Seguridad.
+
+3. Activa la opción "Orígenes desconocidos" para permitir la instalación de aplicaciones fuera de la Play Store.
+
+4. Abre el archivo APK descargado en tu dispositivo.
+
+5. Sigue las instrucciones en pantalla para completar la instalación.
+
+Alternativamente, si prefieres instalar la app a través de Expo Go:
+
+1. Descarga Expo Go desde la Play Store.
+
+2. Abre Expo Go y escanea el siguiente código QR:
+
+   [Espacio reservado para el código QR]
+
+3. La aplicación se cargará y podrás comenzar a usarla inmediatamente.
+
+Nota: Para generar tu propio APK desde el código fuente, necesitarás tener instalado Node.js, Expo CLI, y seguir la documentación oficial de Expo para el proceso de construcción.
+
+
+
+## 🚀 Posibles Mejoras de la App
+
+1. Implementar sincronización en la nube para respaldar y compartir tareas entre dispositivos.
+2. Añadir categorías o etiquetas para organizar mejor las tareas.
+3. Incorporar un sistema de prioridades para las tareas (alta, media, baja).
+4. Desarrollar una vista de calendario para visualizar las tareas programadas.
+5. Implementar recordatorios recurrentes para tareas periódicas.
+6. Añadir la opción de adjuntar archivos o imágenes a las tareas.
+7. Integrar un modo oscuro para mejorar la experiencia de uso nocturna.
+8. Añadir estadísticas y gráficos para seguimiento de productividad.
+
 
