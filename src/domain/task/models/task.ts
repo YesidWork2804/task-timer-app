@@ -4,5 +4,4 @@ export interface Task {
   description: string;
   dateTime: Date;
   completed: boolean;
-  notificationScheduled?: boolean;
 }
