@@ -1,5 +1,5 @@
+import { Task } from "@/src/domain/task/models/task";
 import * as Notifications from "expo-notifications";
-
 import { Alert } from "react-native";
 
 export const useTaskNotifications = () => {
@@ -17,6 +17,12 @@ export const useTaskNotifications = () => {
           },
           trigger: notificationDate,
         });
+        setTimeout(() => {
+          Alert.alert(
+            "Tarea a punto de acabar!",
+            `La tarea "${task.title}" está por vencer en 5 minutos.`
+          );
+        }, notificationDate.getTime() - Date.now());
       } catch (error) {
         console.error("Error al programar notificación:", error);
         // Fallback a Alert
