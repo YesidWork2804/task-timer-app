@@ -5,7 +5,6 @@
     "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
@@ -14,17 +13,22 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "runtimeVersion": {
+        "policy": "appVersion"
+      }
     },
     "android": {
- 
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
       "useNextNotificationsApi": true,
-      "permissions": ["NOTIFICATIONS"],
-      "package": "com.yesid2804.tasktimerapp"
+      "permissions": [
+        "NOTIFICATIONS"
+      ],
+      "package": "com.yesid2804.tasktimerapp",
+      "runtimeVersion": "1.0.0"
     },
     "web": {
       "bundler": "metro",
@@ -50,6 +54,9 @@
       "eas": {
         "projectId": "7b5bdebd-3c9c-409a-a11e-8d5a0bbee694"
       }
+    },
+    "updates": {
+      "url": "https://u.expo.dev/7b5bdebd-3c9c-409a-a11e-8d5a0bbee694"
     }
   }
 }

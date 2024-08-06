@@ -83,9 +83,9 @@ Alternativamente, si prefieres instalar la app a través de Expo Go:
 
 1. Descarga Expo Go desde la Play Store.
 
-2. Abre Expo Go y escanea el siguiente código QR:
+2. Abre Expo Go y escanea el siguiente código QR para Android:
 
-   [Espacio reservado para el código QR]
+  [\[QR para Android\]](https://expo.dev/preview/update?message=update%20design%20app%20in%20ios&updateRuntimeVersion=1.0.0&createdAt=2024-08-06T05%3A56%3A23.571Z&slug=exp&projectId=7b5bdebd-3c9c-409a-a11e-8d5a0bbee694&group=bac24d13-7edc-4339-bc9a-4a953c771d45)
 
 3. La aplicación se cargará y podrás comenzar a usarla inmediatamente.
 
