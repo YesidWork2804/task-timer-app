@@ -6,7 +6,6 @@ export const stylesHome = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.backgroundWhite,
-    paddingTop: Platform.OS === "android" ? 30 : 0,
   },
   selectTaskCard: {
     flexDirection: "row",

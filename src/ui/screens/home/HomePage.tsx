@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { View } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
+
 import { Task } from "@/src/domain/task/models/task";
 import { stylesHome } from "../../styles/homePageStyles";
 import { TitleText } from "./components/TitleText";
@@ -11,6 +12,7 @@ import { ButtonFloating } from "../../components/ButtonFloating";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useCountdown } from "../../hooks/UseCountdown";
 import { taskApi } from "@/src/presentation/tasks/task.presentation";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomePage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -82,43 +84,49 @@ export default function HomePage() {
   };
 
   return (
-    <View style={stylesHome.container}>
-      <TitleText title="Lista de Tareas" />
-      {tasks.length > 0 ? (
-        <>
-          <TaskList
-            tasks={tasks}
-            selectedTask={selectedTask}
-            isListExpanded={isListExpanded}
-            tasksCompleted={tasksCompleted}
-            onTaskPress={handleTaskPress}
-            onToggleList={toggleList}
-          />
-          {selectedTask && (
-            <TaskDetails
-              task={selectedTask}
-              countdown={countdown}
-              onEdit={handleEditTask}
-              onComplete={handleCompleteTask}
-              onDelete={() => setShowDeleteConfirmation(true)}
-              onPress={() => handleTaskPress(selectedTask)}
+    <SafeAreaView
+      style={{
+        flex: 1,
+      }}
+    >
+      <View style={stylesHome.container}>
+        <TitleText title="Lista de Tareas" />
+        {tasks.length > 0 ? (
+          <>
+            <TaskList
+              tasks={tasks}
+              selectedTask={selectedTask}
+              isListExpanded={isListExpanded}
+              tasksCompleted={tasksCompleted}
+              onTaskPress={handleTaskPress}
+              onToggleList={toggleList}
             />
-          )}
-        </>
-      ) : (
-        <EmptyTasksMessage />
-      )}
-      <ButtonFloating
-        icon="add"
-        onPress={() => router.push("/form-task")}
-        size={28}
-      />
-      <ConfirmationModal
-        visible={showDeleteConfirmation}
-        onConfirm={handleDeleteTask}
-        onCancel={() => setShowDeleteConfirmation(false)}
-        taskTitle={selectedTask?.title}
-      />
-    </View>
+            {selectedTask && (
+              <TaskDetails
+                task={selectedTask}
+                countdown={countdown}
+                onEdit={handleEditTask}
+                onComplete={handleCompleteTask}
+                onDelete={() => setShowDeleteConfirmation(true)}
+                onPress={() => handleTaskPress(selectedTask)}
+              />
+            )}
+          </>
+        ) : (
+          <EmptyTasksMessage />
+        )}
+        <ButtonFloating
+          icon="add"
+          onPress={() => router.push("/form-task")}
+          size={28}
+        />
+        <ConfirmationModal
+          visible={showDeleteConfirmation}
+          onConfirm={handleDeleteTask}
+          onCancel={() => setShowDeleteConfirmation(false)}
+          taskTitle={selectedTask?.title}
+        />
+      </View>
+    </SafeAreaView>
   );
 }
