@@ -2,11 +2,6 @@ import React, { useState, useEffect, useCallback } from "react";
 import { View } from "react-native";
 import { useFocusEffect, useRouter } from "expo-router";
 import { Task } from "@/src/domain/task/models/task";
-import {
-  completeTask,
-  deleteTask,
-  getTasks,
-} from "@/src/domain/task/usecases/taskUseCases";
 import { stylesHome } from "../../styles/homePageStyles";
 import { TitleText } from "./components/TitleText";
 import TaskList from "./components/TaskList";
@@ -15,6 +10,7 @@ import EmptyTasksMessage from "./components/EmptyTasksMessage";
 import { ButtonFloating } from "../../components/ButtonFloating";
 import ConfirmationModal from "../../components/ConfirmationModal";
 import { useCountdown } from "../../hooks/UseCountdown";
+import { taskApi } from "@/src/presentation/tasks/task.presentation";
 
 export default function HomePage() {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -37,7 +33,7 @@ export default function HomePage() {
   );
 
   const loadTasks = async () => {
-    const loadedTasks = await getTasks();
+    const loadedTasks = await taskApi.getTasks();
     setTasks(loadedTasks);
     setTasksCompleted(loadedTasks.filter((task) => task.completed));
   };
@@ -68,7 +64,7 @@ export default function HomePage() {
 
   const handleCompleteTask = async () => {
     if (selectedTask) {
-      const updatedTasks = await completeTask(selectedTask.id);
+      const updatedTasks = await taskApi.completeTask(selectedTask.id);
       setTasks(updatedTasks);
       setSelectedTask({ ...selectedTask, completed: true });
       router.push("/");
@@ -77,7 +73,7 @@ export default function HomePage() {
 
   const handleDeleteTask = async () => {
     if (selectedTask) {
-      const updatedTasks = await deleteTask(selectedTask.id);
+      const updatedTasks = await taskApi.deleteTask(selectedTask.id);
       setTasks(updatedTasks);
       setSelectedTask(null);
       setIsListExpanded(true);
