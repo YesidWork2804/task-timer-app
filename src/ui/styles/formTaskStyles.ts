@@ -9,11 +9,11 @@ export const stylesFormTask = StyleSheet.create({
   },
   addButton: {
     backgroundColor: Colors.primary,
-    marginTop: 240,
     fontSize: 16,
     width: 200,
     height: 50,
     justifyContent: "center",
+    alignSelf: "center",
   },
   backButton: {
     position: "absolute",
@@ -63,5 +63,10 @@ export const stylesFormTask = StyleSheet.create({
     fontSize: 16,
     fontWeight: "bold",
     color: Colors.backgroundWhite,
+  },
+  buttonContainer: {
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 16,
   },
 });

@@ -60,7 +60,7 @@ const TaskDetails: React.FC<TaskDetailsProps> = ({
                   {countdown}
                   <Text style={{ color: Colors.colorTextSecondary }}>
                     {"  "}
-                    Miinutos restantes
+                    Minutos restantes
                   </Text>
                 </>
               )}

@@ -241,7 +241,7 @@ export const stylesHome = StyleSheet.create({
     fontSize: 14,
     fontWeight: "600",
     color: Colors.colorTextSecondary,
-    marginLeft: 14,
+    marginLeft: 16,
     marginTop: 8,
     marginBottom: 8,
   },

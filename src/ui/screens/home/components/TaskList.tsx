@@ -43,8 +43,14 @@ const TaskList: React.FC<TaskListProps> = ({
       {isListExpanded && !selectedTask && (
         <>
           <Text style={stylesHome.detailsCompleted}>
-            {tasks.length} Tareas Creadas {"                               "}
-            {tasksCompleted.length} Tareas Completadas
+            {tasksCompleted.length}{" "}
+            {tasksCompleted.length === 1
+              ? "Tarea Completada"
+              : "Tareas Completadas"}
+          </Text>
+          <Text style={stylesHome.detailsCompleted}>
+            {tasks.length}{" "}
+            {tasks.length === 1 ? "Tarea Creada" : "Tareas Creadas"}
           </Text>
           <FlatList
             data={tasks}
