@@ -65,7 +65,7 @@ Task Manager App es una aplicación móvil desarrollada con React Native y Expo 
 
 Para instalar y generar el APK de Task Manager App en tu dispositivo, sigue estos pasos:
 
-1. Descarga la última versión del APK con este qr :
+1. Descarga la última versión del APK desde Google Drive con este qr :
    ![Qr para descargar la app en Android](assets/images/qr-download.png)
 
    - Haz clic en el botón "Descargar" en la parte superior de la página.
@@ -86,9 +86,9 @@ Alternativamente, si prefieres instalar la app a través de Expo Go:
 
 2. Abre Expo Go y escanea el siguiente código QR para Android y IOS:
 
-  [\[QR para Android\]](https://expo.dev/preview/update?message=update%20design%20app%20in%20ios&updateRuntimeVersion=1.0.0&createdAt=2024-08-06T05%3A56%3A23.571Z&slug=exp&projectId=7b5bdebd-3c9c-409a-a11e-8d5a0bbee694&group=bac24d13-7edc-4339-bc9a-4a953c771d45)
+  [\[QR para Android\]](https://expo.dev/preview/update?message=app%20update%17%1A&updateRuntimeVersion=1.0.0&createdAt=2024-08-06T18%3A47%3A27.300Z&slug=exp&projectId=7b5bdebd-3c9c-409a-a11e-8d5a0bbee694&group=df174c7e-ce54-420e-8c20-dde952cf0574)
 
-  [\[QR para IOS\]](https://expo.dev/preview/update?message=update%20design%20app%20in%20ios&updateRuntimeVersion=1.0.1&createdAt=2024-08-06T05%3A56%3A23.571Z&slug=exp&projectId=7b5bdebd-3c9c-409a-a11e-8d5a0bbee694&group=5c5be061-1cee-48a7-b513-8f8b985aebeb)
+  [\[QR para IOS\]](https://expo.dev/preview/update?message=app%20update%17%1A&updateRuntimeVersion=1.0.1&createdAt=2024-08-06T18%3A47%3A27.300Z&slug=exp&projectId=7b5bdebd-3c9c-409a-a11e-8d5a0bbee694&group=801c657e-f7f8-461c-bbbf-771703b96cac)
 
 3. La aplicación se cargará y podrás comenzar a usarla inmediatamente.
 
