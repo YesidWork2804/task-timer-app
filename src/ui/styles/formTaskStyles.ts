@@ -4,7 +4,6 @@ import { StyleSheet } from "react-native";
 export const stylesFormTask = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 25,
     backgroundColor: Colors.backgroundWhite,
   },
   addButton: {
@@ -30,8 +29,7 @@ export const stylesFormTask = StyleSheet.create({
     color: Colors.primary,
   },
   form: {
-    flex: 1,
-    color: "#000000",
+    paddingHorizontal: 25,
   },
   input: {
     marginBottom: 16,
@@ -40,6 +38,7 @@ export const stylesFormTask = StyleSheet.create({
   },
   textArea: {
     height: 120,
+    minHeight: 100,
   },
   dateButton: {
     marginTop: 16,

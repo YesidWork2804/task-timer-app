@@ -1,6 +1,6 @@
 import React from "react";
-import { SafeAreaView, View, TouchableOpacity } from "react-native";
-import { Text, Button, Provider as PaperProvider } from "react-native-paper";
+import { SafeAreaView, View, TouchableOpacity, Keyboard } from "react-native";
+import { Button, Provider as PaperProvider } from "react-native-paper";
 import { Formik } from "formik";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { MaterialIcons } from "@expo/vector-icons";
@@ -10,6 +10,7 @@ import { useTaskManagement } from "./hooks/useTaskManagement";
 import { taskValidationSchema } from "./utils/validationShema";
 import { InputField } from "./components/InputField";
 import { CustomDateTimePicker } from "./components/DateTimePicker";
+import { Text } from "react-native";
 
 export default function AddTaskScreen() {
   const router = useRouter();
@@ -74,6 +75,17 @@ export default function AddTaskScreen() {
                 multiline
                 numberOfLines={4}
               />
+
+              <Text
+                style={{
+                  fontSize: 16,
+                  color: Colors.colorTextSecondary,
+                  fontWeight: "600",
+                }}
+              >
+                Fecha de Vencimiento
+              </Text>
+
               <CustomDateTimePicker
                 value={values.dateTime}
                 onChange={(date) => setFieldValue("dateTime", date)}
