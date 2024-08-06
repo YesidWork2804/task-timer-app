@@ -66,9 +66,11 @@ Task Manager App es una aplicación móvil desarrollada con React Native y Expo 
 Para instalar y generar el APK de Task Manager App en tu dispositivo, sigue estos pasos:
 
 1. Descarga la última versión del APK con este qr :
-   [\[Qr para descargar la app\]](
-      
-   )
+   ![Qr para descargar la app en Android](assets/images/qr-download.png)
+
+   - Haz clic en el botón "Descargar" en la parte superior de la página.
+   - Si el archivo está comprimido, descomprímelo después de la descarga.
+
 
 2. En tu dispositivo Android, ve a Configuración > Seguridad.
 
